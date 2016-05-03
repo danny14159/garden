@@ -107,7 +107,8 @@ public class MainController extends SpringBootServletInitializer{
 		return "artdetail";
 	}
 	@RequestMapping("/plants")
-	public String plants(){
+	public String plants(Model model){
+		model.addAttribute("list",articleDao.list(M.make("type", 2).asMap()));
 		return "plants";
 	}
 	@RequestMapping("/file")

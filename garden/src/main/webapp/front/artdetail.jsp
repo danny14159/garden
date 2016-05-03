@@ -14,7 +14,7 @@
 
 <div class="container">
 
-<jsp:include page="/nav.jsp?nav=1"></jsp:include>
+<jsp:include page="/nav.jsp?nav=${data.type }"></jsp:include>
 <hr/>
 	<div class="col-sm-8">
 		<h1 class="">${data.title }</h1>
