@@ -1,5 +1,7 @@
 package com.work;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
 
+import com.work.bean.Article;
 import com.work.bean.User;
+import com.work.mapper.ArticleDao;
 import com.work.mapper.UserDao;
 import com.work.util.M;
 
@@ -28,12 +32,14 @@ public class MainController extends SpringBootServletInitializer{
 	@RequestMapping("/")
 	public String index(){
 		
-		return "redirect:/app/login";
+		return "index";
 	}
 	
 	
 	@Resource
 	private UserDao userDao;
+	@Resource
+	private ArticleDao articleDao;
 	
 	public final static String ME = "me";
 
@@ -85,4 +91,31 @@ public class MainController extends SpringBootServletInitializer{
 		SpringApplication.run(MainController.class, args);
 	}
 
+	@RequestMapping("/art")
+	public String art(Model model){
+		List<Article> data = articleDao.list(M.make("type", 1).asMap());
+		
+		model.addAttribute("data", data);
+		return "art";
+	}
+	@RequestMapping("/art/detail")
+	public String artdetail(String id,Model model){
+		Article data = articleDao.load(M.make("id", id).asMap());
+		model.addAttribute("data", data);
+		
+		model.addAttribute("list",articleDao.list(M.make("type", 1).asMap()));
+		return "artdetail";
+	}
+	@RequestMapping("/plants")
+	public String plants(){
+		return "plants";
+	}
+	@RequestMapping("/file")
+	public String file(){
+		return "file";
+	}
+	@RequestMapping("/notify")
+	public String notifi(){
+		return "notify";
+	}
 }

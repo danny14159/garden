@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">公文流转管理系统</a>
+          <a class="navbar-brand" href="#">植物园管理系统后台</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -38,10 +38,10 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="/user/" target="main">用户管理</a></li>
-            <li><a href="/department/" target="main">部门管理</a></li>
-            <li><a href="/document/" target="main">公文管理</a></li>
-            <li><a href="/review/" target="main">审阅记录</a></li>
-            <li><a href="/urge/" target="main">事务催办</a></li>
+            <li><a href="/notify/" target="main">公告管理</a></li>
+            <li><a href="/file/" target="main">文件管理</a></li>
+            <li><a href="/article/?type=1" target="main">植物信息管理</a></li>
+            <li><a href="/article/?type=2" target="main">园艺信息管理</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

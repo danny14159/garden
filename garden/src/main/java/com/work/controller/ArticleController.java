@@ -1,14 +1,16 @@
 
 package com.work.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.work.bean.Article;
-import com.work.mapper.BasicDao;
 import com.work.mapper.ArticleDao;
+import com.work.mapper.BasicDao;
 
 @Controller
 @RequestMapping("/article")
@@ -28,7 +30,12 @@ public class ArticleController extends BasicController<Article>{
 	protected BasicDao<Article> getDao() {
 		return ArticleDao;
 	}
-
-
+	
+	@Override
+	public Object insert(Article obj) {
+		obj.setCreate_time(new Date());
+		obj.setUpdate_time(new Date());
+		return super.insert(obj);
+	}
 }
     

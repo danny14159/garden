@@ -32,3 +32,8 @@ mybatis:
 logging:  
     level:  
        com.ibatis: DEBUG
+       
+#upload
+upload:
+    defaultEncoding: UTF-8
+    maxUploadSize: -1

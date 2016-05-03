@@ -16,9 +16,8 @@
 
 <h1 class="page-header">文章 - 查看</h1>
 
-<form class="form-inline">
-<button type="submit" class="btn btn-default">查找</button>
-</form><table class="table table-striped">
+<a class="btn btn-xs btn-link" href="/article/add">添加</a>
+<table class="table table-striped">
 <tr>
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
 	
@@ -27,9 +26,7 @@
 	
 	<th>标题</th>
 	
-	<th>文章内容</th>
-	
-	<th>文章类型</th>
+	<th>简介</th>
 	
 	<th>创建时间</th>
 	
@@ -53,12 +50,7 @@
 	
 	<td>
 		
-		<c:out value="${i.content}"></c:out>
-	</td>
-	
-	<td>
-		
-		<c:out value="${i.type}"></c:out>
+		<c:out value="${i.brief_intro}"></c:out>
 	</td>
 	
 	<td>

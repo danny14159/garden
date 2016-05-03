@@ -22,8 +22,31 @@ public class Article  {
 
 	/**
 	 * 文章类型
+	 * 1：植物
+	 * 2：园艺
 	 */
 	private String type;
+	
+	private String cover;
+	
+	private String brief_intro;
+	
+
+	public String getBrief_intro() {
+		return brief_intro;
+	}
+
+	public void setBrief_intro(String brief_intro) {
+		this.brief_intro = brief_intro;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
 
 	/**
 	 * 创建时间

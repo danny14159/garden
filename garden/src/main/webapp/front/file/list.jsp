@@ -1,6 +1,3 @@
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,9 +13,7 @@
 
 <h1 class="page-header">文件 - 查看</h1>
 
-<form class="form-inline">
-<button type="submit" class="btn btn-default">查找</button>
-</form><table class="table table-striped">
+<table class="table table-striped">
 <tr>
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
 	
@@ -30,8 +25,6 @@
 	<th>访问路径</th>
 	
 	<th>创建时间</th>
-	
-	<th>下载次数</th>
 	
 	<th>文件类型</th>
 	
@@ -62,12 +55,6 @@
 	</td>
 	
 	<td>
-		
-		<c:out value="${i.download_times}"></c:out>
-	</td>
-	
-	<td>
-		
 		<c:out value="${i.file_type}"></c:out>
 	</td>
 	

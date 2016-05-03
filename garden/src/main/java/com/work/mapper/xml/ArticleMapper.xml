@@ -2,7 +2,7 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.work.mapper.ArticleDao">
   <insert id="insert" parameterType="com.work.bean.Article">
-   insert into tb_article(id,title,content,type,create_time,update_time) values(#{id},#{title},#{content},#{type},#{create_time},#{update_time});
+   insert into tb_article(id,title,content,type,create_time,update_time,brief_intro) values(#{id},#{title},#{content},#{type},#{create_time},#{update_time},#{brief_intro});
   </insert>
   <delete id="delete" parameterType="com.work.bean.Article">
    update tb_article set delete_state=1
@@ -35,7 +35,7 @@
        </where>
   </update>
   <select id="list" resultType="com.work.bean.Article" parameterType="com.work.bean.Article">
-   select id,title,content,type,create_time,update_time from tb_article
+   select * from tb_article
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="title!=null">and title=#{ title }</if>
@@ -46,7 +46,7 @@
        </where>
   </select>
   <select id="listByPage" resultType="com.work.bean.Article" parameterType="com.work.bean.Article">
-   select id,title,content,type,create_time,update_time from tb_article
+   select * from tb_article
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="title!=null">and title=#{ title }</if>
@@ -58,7 +58,7 @@
    limit #{offset},#{rows}
   </select>
   <select id="load" resultType="com.work.bean.Article" parameterType="com.work.bean.Article">
-   select id,title,content,type,create_time,update_time from tb_article
+   select * from tb_article
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="title!=null">and title=#{ title }</if>
