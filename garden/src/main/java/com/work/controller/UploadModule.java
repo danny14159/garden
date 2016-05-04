@@ -57,12 +57,12 @@ public class UploadModule {
 		}
 		
 		// 文件类型 过滤
-		boolean isFileSpecified = false;
-		try {
-			isFileSpecified = FileTypeJudge.isFileSpecifiedType(file.getInputStream(), typeFilter);
+		boolean isFileSpecified = true;
+		/*try {
+			//isFileSpecified = FileTypeJudge.isFileSpecifiedType(file.getInputStream(), typeFilter);
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		}
+		}*/
 		
 		System.out.println("is file "+typeFilter+":"+isFileSpecified);
 		if(!isFileSpecified){

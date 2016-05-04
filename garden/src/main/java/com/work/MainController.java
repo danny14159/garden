@@ -18,6 +18,7 @@ import org.springframework.web.util.WebUtils;
 import com.work.bean.Article;
 import com.work.bean.User;
 import com.work.mapper.ArticleDao;
+import com.work.mapper.FileDao;
 import com.work.mapper.UserDao;
 import com.work.util.M;
 
@@ -40,6 +41,8 @@ public class MainController extends SpringBootServletInitializer{
 	private UserDao userDao;
 	@Resource
 	private ArticleDao articleDao;
+	@Resource
+	private FileDao fileDao;
 	
 	public final static String ME = "me";
 
@@ -112,7 +115,9 @@ public class MainController extends SpringBootServletInitializer{
 		return "plants";
 	}
 	@RequestMapping("/file")
-	public String file(){
+	public String file(Model model){
+		model.addAttribute("data", fileDao.list(null)
+				);
 		return "file";
 	}
 	@RequestMapping("/notify")
