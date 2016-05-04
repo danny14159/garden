@@ -2,7 +2,7 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.work.mapper.FileDao">
   <insert id="insert" parameterType="com.work.bean.File">
-   insert into tb_file(id,name,path,create_time,download_times,file_type) values(#{id},#{name},#{path},#{create_time},#{download_times},#{file_type});
+   insert into tb_file(id,name,path,create_time,download_times,file_type,descn) values(#{id},#{name},#{path},#{create_time},#{download_times},#{file_type},#{descn});
   </insert>
   <delete id="delete" parameterType="com.work.bean.File">
    update tb_file set delete_state=1
@@ -35,7 +35,7 @@
        </where>
   </update>
   <select id="list" resultType="com.work.bean.File" parameterType="com.work.bean.File">
-   select id,name,path,create_time,download_times,file_type from tb_file
+   select id,name,path,create_time,download_times,file_type,descn from tb_file
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="name!=null">and name=#{ name }</if>
@@ -46,7 +46,7 @@
        </where>
   </select>
   <select id="listByPage" resultType="com.work.bean.File" parameterType="com.work.bean.File">
-   select id,name,path,create_time,download_times,file_type from tb_file
+   select id,name,path,create_time,download_times,file_type,descn from tb_file
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="name!=null">and name=#{ name }</if>
@@ -58,7 +58,7 @@
    limit #{offset},#{rows}
   </select>
   <select id="load" resultType="com.work.bean.File" parameterType="com.work.bean.File">
-   select id,name,path,create_time,download_times,file_type from tb_file
+   select id,name,path,create_time,download_times,file_type,descn from tb_file
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="name!=null">and name=#{ name }</if>

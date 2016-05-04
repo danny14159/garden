@@ -12,6 +12,10 @@
 <style type="text/css">
 .file-block{margin: 15px;padding: 8px;border:1px solid #eee;border-radius:5px;text-align: center;}
 .file-block:hover{background: #eee;cursor: pointer;}
+td{border:none!important;}
+.upload_btn{width:350px;height: 40px;text-align: center;border-radius:5px;line-height: 40px;background: #446e9b;
+    color: #fff;}
+.upload_btn:hover{cursor: pointer;}
 </style>
 </head>
 <body>
@@ -21,7 +25,9 @@
 <div class="container">
 
 <div class="col-sm-7">
-	<table class="table table-striped">
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"right","bdTop":"100"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+	<table class="table table-striped table-noborder">
 	<c:forEach items="${data }" var="i">
 		<c:set var="thumb" value="/static/file_suffix/${i.file_type }.png"/>
 		<c:if test="${i.file_type == 'jpeg' or i.file_type == 'jpg' }">
@@ -31,12 +37,22 @@
 			<td width="20%"><img src="${thumb }" width="100px"/></td>
 			<td width="70%">
 				<table class="table">
-					<tr><td><a class="text-info" href="/art/detail?id=${i.id }">${i.name }</a></td></tr>
+					<tr><td><a class="text-info" href="/art/detail?id=${i.id }">${i.name }</a>
+					
+					<div class="pull-right">
+					<a class="text-danger" href="${i.path }" download="${i.name }">下载</a>
+					<a class="text-muted" href="${i.path }" target="_blank">预览</a>
+					</div>
+					
+					</td></tr>
 					<tr><td><p class="text-muted">
 						上传于<fmt:formatDate value="${i.create_time }" pattern="yyyy-MM-dd HH:mm"/>
 					</p>
-					<a class="text-info" href="${i.path }" download="${i.name }">下载</a>
-					<a class="text-muted" href="${i.path }" target="_blank">预览</a>
+					<p class="text-muted">
+						<c:if test="${empty i.descn }">该文件还没有编辑描述哦~</c:if>
+						<c:if test="${!empty i.descn }">${i.descn }</c:if>
+					</p>
+					
 					
 					</td></tr>
 				</table>
@@ -46,6 +62,7 @@
 	</table>
 </div>
 <div class="col-sm-5">
+	<!-- <div class="upload_btn" onclick="">上传文件</div> -->
 	<div id="file_upload"></div>
 	<p class="text-danger">下载排行</p>
 	<c:forEach items="${data }" var="i">
@@ -56,11 +73,17 @@
 	</div>
 	</c:forEach>
 </div>
-      
+
+<!-- <div id="filetpl">
+	<div id="file_upload"></div>
+	添加文件描述：<textarea rows="10" cols="5"></textarea>
+</div>
+ -->
 </div>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="/static/layer/layer.js"></script>
 <script type="text/javascript">
 $(function() {
     $("#file_upload").uploadify({
@@ -83,6 +106,14 @@ $(function() {
         }
     });
 });
+
+//页面层
+/* layer.open({
+	type: 1,
+	skin: 'layui-layer-rim', //加上边框
+	area: ['420px', '400px'], //宽高
+	content: $('#filetpl').html()
+}); */
 </script>
 </body>
 </html>

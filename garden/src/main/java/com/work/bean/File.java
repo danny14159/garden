@@ -35,6 +35,16 @@ public class File  {
 	 * 文件类型
 	 */
 	private String file_type;
+	
+	private String descn;
+
+	public String getDescn() {
+		return descn;
+	}
+
+	public void setDescn(String descn) {
+		this.descn = descn;
+	}
 
 	public void setId(Integer id){
 		this.id=id;
