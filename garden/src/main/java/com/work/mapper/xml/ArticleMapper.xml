@@ -80,5 +80,8 @@
          <if test="update_time!=null">and update_time = #{ update_time }</if>
        </where>
   </select>
+  <select id="search" parameterType="string" resultType="com.work.bean.Article" >
+  select * from tb_article where title like concat('%',#{key},'%')
+  </select>
  </mapper>
  

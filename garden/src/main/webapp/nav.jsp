@@ -25,9 +25,9 @@ body{font-family: 'Microsoft Yahei'}
             <li<c:if test="${param.nav == 4 }"> class="active"</c:if>><a href="/file">文件</a></li></c:if>
             
           </ul>
-          <form class="navbar-form navbar-right">
+          <form class="navbar-form navbar-right" action="/search">
             <div class="form-group">
-              <input type="text" placeholder="关键字" class="form-control">
+              <input type="text" placeholder="关键字" class="form-control" name="key" value="${key }">
             </div>
             <button type="submit" class="btn btn-success">搜索</button>
             <c:if test="${me != null }">

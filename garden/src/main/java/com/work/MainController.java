@@ -135,4 +135,11 @@ public class MainController extends SpringBootServletInitializer{
 		return "register";
 	}
 	
+	@RequestMapping("/search")
+	public String search(String key,Model model){
+		
+		model.addAttribute("data", articleDao.search(key));
+		model.addAttribute("key", key);
+		return "art";
+	}
 }
