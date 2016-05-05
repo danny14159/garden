@@ -12,6 +12,7 @@ import com.work.bean.Tiezi;
 import com.work.bean.TieziPraise;
 import com.work.bean.User;
 import com.work.mapper.BasicDao;
+import com.work.mapper.TieziCommentDao;
 import com.work.mapper.TieziDao;
 import com.work.mapper.TieziPraiseDao;
 import com.work.util.AjaxReturn;
@@ -24,6 +25,8 @@ public class TieziController extends BasicController<Tiezi>{
 	private TieziDao TieziDao;
 	@Resource
 	private TieziPraiseDao tieziPraiseDao;
+	@Resource
+	private TieziCommentDao tieziCommentDao;
 	
 	public static final String PREFIX="Tiezi/";
 

@@ -12,8 +12,12 @@
 .tiezi{margin-top: 15px;}
 .tiezi li{margin: 15px;list-style: none;}
 body{background:url('/static/img/body_bg.jpg') no-repeat; background-color: #b4daf0}
+ul{padding-left: 0}
 .row{background: rgba(255,255,255,0.5);;border-radius:3px;padding: 25px 0}
 .table .table{background-color: transparent;}
+.cmt_area .row{padding: 5px 0}
+hr{border: none;}
+.form-control{border:none;}
 </style>
 </head>
 <body>
@@ -36,18 +40,19 @@ body{background:url('/static/img/body_bg.jpg') no-repeat; background-color: #b4d
 			    <label for="exampleInputPassword1">内容</label>
 			    <textarea class="form-control" id="content" placeholder="填写帖子的内容"></textarea>
 			  </div>
-			  <button type="button" class="btn btn-default" onclick="submit()">发表</button>
+			  <button type="button" class="btn btn-primary" onclick="submit()">发表</button>
 		</div>
 		</div>
 		
 		<hr/>
-		
+		<div class="row">
 		<ul class="tiezi">
 		
 			<c:forEach items="${data }" var="i" varStatus="s">
 			<li><div class="row">
-				<div class="col-sm-2">
+				<div class="col-sm-2" style="text-align: center;">
 					<img src="/static/avatar/${i.create_by % 5 }.jpg" width="100%" class="img-thumbnail"/>
+					${i.create_username }
 				</div>
 				<div class="col-sm-10">
 					<p class="text-info"><strong>${i.title }</strong><small class="text-muted">&nbsp;
@@ -60,11 +65,33 @@ body{background:url('/static/img/body_bg.jpg') no-repeat; background-color: #b4d
 					<c:if test="${i.hasPraised > 0 }">取消赞</c:if>
 					<c:if test="${i.hasPraised eq 0 }">赞</c:if>
 					(${i.nPraise })</a>&nbsp;&nbsp;
-					<a href="javascript:;"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>评论(${i.nComment })</a>
+					<a href="javascript:;" onclick="comment(this)"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>评论(${i.nComment })</a>
+				<div class="comment-area" style="display: none;">
+					 <textarea class="form-control" placeholder="填写评论的内容"></textarea>
+					 <a href="javascript:;" onclick="sendComment(${i.id},this)">确定</a>
+					 <a href="javascript:;" class="text-muted" onclick="cancelComment(this)">取消</a>
+				</div>
+				
+				<ul class="cmt_area">
+					<c:forEach items="${i.comments }" var="c">
+						<li class="row">
+						<div class="col-sm-1"  style="padding: 0;">
+							<img src="/static/avatar/${c.user_id % 5 }.jpg" width="50px" class="img-thumbnail"/>
+						</div>
+						<div class="col-sm-11" >
+							<small class="" style="color:#eb7350">${c.username }&nbsp;：</small>
+							<span>${c.content }</span>
+							<div class="text-muted"><small><fmt:formatDate value="${c.create_time }" pattern="yyyy-MM-dd HH:mm"/></small></div>
+						</div>
+						</li>
+					</c:forEach>
+				</ul>
+				
 				</div></div>
 			</li>
 			</c:forEach>
 		</ul>
+		</div>
 		
 	</div>
 	<div class="col-sm-4">
@@ -100,6 +127,23 @@ function submit(){
 		content:content
 	},function(data){
 		if(data.ok){
+			location.reload();
+		}
+	})
+}
+function cancelComment(btn){
+	$(btn).closest('.comment-area').hide(300);
+}
+function comment(btn){
+	$(btn).next('.comment-area').show(300);
+}
+function sendComment(id,btn){
+	var comment = $(btn).closest('.comment-area').children('textarea').val();
+	$.post('/tiezicomment/insert',{
+		content:comment,
+		tiezi_id: id
+	},function(data){
+		if(data){
 			location.reload();
 		}
 	})

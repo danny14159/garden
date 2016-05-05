@@ -1,4 +1,7 @@
 package com.work.bean;
+
+import java.util.Date;
+
 /**
  * @author 
  *
@@ -24,6 +27,26 @@ public class TieziComment  {
 	 * 用户编号
 	 */
 	private Integer user_id;
+	
+	private String username;
+	
+	private Date create_time;
+
+	public Date getCreate_time() {
+		return create_time;
+	}
+
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public void setId(Integer id){
 		this.id=id;

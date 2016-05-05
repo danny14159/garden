@@ -1,4 +1,7 @@
 package com.work.bean;
+
+import java.util.List;
+
 /**
  * @author 
  *
@@ -31,6 +34,29 @@ public class Tiezi  {
 	 */
 	private Integer create_by;
 	
+	/**
+	 * 帖子的所有评论
+	 */
+	private List<TieziComment> comments;
+	
+	public List<TieziComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<TieziComment> comments) {
+		this.comments = comments;
+	}
+
+	private String create_username;
+	
+	public String getCreate_username() {
+		return create_username;
+	}
+
+	public void setCreate_username(String create_username) {
+		this.create_username = create_username;
+	}
+
 	private Integer nPraise;
 	
 	private Integer nComment;

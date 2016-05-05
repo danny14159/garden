@@ -32,11 +32,13 @@
        </where>
   </update>
   <select id="list" resultType="com.work.bean.Tiezi" parameterType="map">
-   select id,title,content,create_time,create_by,
+   select tb_tiezi.id,tb_tiezi.title,tb_tiezi.content,tb_tiezi.create_time,tb_tiezi.create_by,
    (select count(1) from tb_tiezi_praise where tiezi_id = tb_tiezi.id) as nPraise,
    (select count(1) from tb_tiezi_comment where tiezi_id = tb_tiezi.id) as nComment,
-   (select count(1) from tb_tiezi_praise where tiezi_id = tb_tiezi.id and user_id = #{myId}) as hasPraised
+   (select count(1) from tb_tiezi_praise where tiezi_id = tb_tiezi.id and user_id = #{myId}) as hasPraised,
+    u.username as create_username
     from tb_tiezi
+    left join tb_user u on tb_tiezi.create_by = u.id
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="title!=null">and title=#{ title }</if>

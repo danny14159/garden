@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
 
 import com.work.bean.Article;
+import com.work.bean.Tiezi;
 import com.work.bean.User;
 import com.work.controller.LoginController;
 import com.work.mapper.ArticleDao;
 import com.work.mapper.FileDao;
+import com.work.mapper.TieziCommentDao;
 import com.work.mapper.TieziDao;
 import com.work.mapper.UserDao;
 import com.work.util.M;
@@ -48,6 +50,8 @@ public class MainController extends SpringBootServletInitializer{
 	private FileDao fileDao;
 	@Resource
 	private TieziDao tieziDao;
+	@Resource
+	private TieziCommentDao tieziCommentDao;
 	
 	public final static String ME = "me";
 
@@ -113,7 +117,13 @@ public class MainController extends SpringBootServletInitializer{
 		}
 		
 		model.addAttribute("list",articleDao.list(M.make("type", 2).asMap()));
-		model.addAttribute("data", tieziDao.list(M.make("myId", u.getId()).asMap()));
+		
+		List<Tiezi> data = tieziDao.list(M.make("myId", u.getId()).asMap());
+		
+		for(Tiezi item:data){
+			item.setComments(tieziCommentDao.list(M.make("tiezi_id", item.getId()).asMap()));
+		}
+		model.addAttribute("data",data);
 		
 		Random r = new Random();
 		model.addAttribute("r1", r.nextInt(5));
