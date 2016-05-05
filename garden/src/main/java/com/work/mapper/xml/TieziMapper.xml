@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.work.mapper.TieziDao">
+  <insert id="insert" parameterType="com.work.bean.Tiezi">
+   insert into tb_tiezi(id,title,content,create_time,create_by) values(#{id},#{title},#{content},#{create_time},#{create_by});
+  </insert>
+  <delete id="delete" parameterType="com.work.bean.Tiezi">
+   update tb_tiezi set delete_state=1
+   <where>
+    id=#{id}
+         <if test="title!=null">and title=#{ title }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="create_time!=null">and create_time=#{ create_time }</if>
+         <if test="create_by!=null">and create_by=#{ create_by }</if>
+       </where>
+  </delete>
+  <update id="update" parameterType="com.work.bean.Tiezi">
+   update tb_tiezi
+   <set>
+         <if test="id!=null">id=#{ id },</if>
+         <if test="title!=null">title=#{ title },</if>
+         <if test="content!=null">content=#{ content },</if>
+         <if test="create_time!=null">create_time=#{ create_time },</if>
+         <if test="create_by!=null">create_by=#{ create_by },</if>
+       </set>
+   <where>
+    id=#{id}
+         <if test="title!=null">and title=#{ title }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="create_time!=null">and create_time=#{ create_time }</if>
+         <if test="create_by!=null">and create_by=#{ create_by }</if>
+       </where>
+  </update>
+  <select id="list" resultType="com.work.bean.Tiezi" parameterType="map">
+   select id,title,content,create_time,create_by,
+   (select count(1) from tb_tiezi_praise where tiezi_id = tb_tiezi.id) as nPraise,
+   (select count(1) from tb_tiezi_comment where tiezi_id = tb_tiezi.id) as nComment,
+   (select count(1) from tb_tiezi_praise where tiezi_id = tb_tiezi.id and user_id = #{myId}) as hasPraised
+    from tb_tiezi
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="title!=null">and title=#{ title }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="create_time!=null">and create_time=#{ create_time }</if>
+         <if test="create_by!=null">and create_by=#{ create_by }</if>
+       </where>
+       order by id desc
+  </select>
+  <select id="listByPage" resultType="com.work.bean.Tiezi" parameterType="com.work.bean.Tiezi">
+   select id,title,content,create_time,create_by from tb_tiezi
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="title!=null">and title=#{ title }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="create_time!=null">and create_time=#{ create_time }</if>
+         <if test="create_by!=null">and create_by=#{ create_by }</if>
+       </where>
+   limit #{offset},#{rows}
+  </select>
+  <select id="load" resultType="com.work.bean.Tiezi" parameterType="com.work.bean.Tiezi">
+   select id,title,content,create_time,create_by from tb_tiezi
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="title!=null">and title=#{ title }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="create_time!=null">and create_time=#{ create_time }</if>
+         <if test="create_by!=null">and create_by=#{ create_by }</if>
+       </where>
+   limit 0,1
+  </select>
+  <select id="count" resultType="int" parameterType="com.work.bean.Tiezi">
+   select count(1) from tb_tiezi
+   <where>
+         <if test="id!=null">and id = #{ id }</if>
+         <if test="title!=null">and title = #{ title }</if>
+         <if test="content!=null">and content = #{ content }</if>
+         <if test="create_time!=null">and create_time = #{ create_time }</if>
+         <if test="create_by!=null">and create_by = #{ create_by }</if>
+       </where>
+  </select>
+ </mapper>
+ 

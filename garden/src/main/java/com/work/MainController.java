@@ -1,6 +1,7 @@
 package com.work;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +18,10 @@ import org.springframework.web.util.WebUtils;
 
 import com.work.bean.Article;
 import com.work.bean.User;
+import com.work.controller.LoginController;
 import com.work.mapper.ArticleDao;
 import com.work.mapper.FileDao;
+import com.work.mapper.TieziDao;
 import com.work.mapper.UserDao;
 import com.work.util.M;
 
@@ -43,6 +46,8 @@ public class MainController extends SpringBootServletInitializer{
 	private ArticleDao articleDao;
 	@Resource
 	private FileDao fileDao;
+	@Resource
+	private TieziDao tieziDao;
 	
 	public final static String ME = "me";
 
@@ -62,26 +67,6 @@ public class MainController extends SpringBootServletInitializer{
 	public static User getCurrentUser(HttpServletRequest req){
 		
 		return (User)WebUtils.getSessionAttribute(req, ME);
-	}
-	
-	/**login request
-	 * @param username
-	 * @param password
-	 * @return
-	 */
-	@RequestMapping(value="/app/login",method=RequestMethod.POST)
-	public String login(String username,String password,HttpServletRequest req,Model model){
-		
-		 User u = userDao.load(M.make("loginname", username).put("password", password).asMap());
-		 
-		 if(null == u){
-			 
-			 model.addAttribute("msg", "用户名不存在或密码错误");
-			 return "login";
-		 }
-		 
-		 WebUtils.setSessionAttribute(req, ME, u);
-		 return "redirect:/app/frame";
 	}
 	
 	@RequestMapping("/app/frame")
@@ -106,7 +91,7 @@ public class MainController extends SpringBootServletInitializer{
 		Article data = articleDao.load(M.make("id", id).asMap());
 		model.addAttribute("data", data);
 		
-		model.addAttribute("list",articleDao.list(M.make("type", 1).asMap()));
+		model.addAttribute("list",articleDao.list(M.make("type", 2).asMap()));
 		return "artdetail";
 	}
 	@RequestMapping("/plants")
@@ -120,8 +105,24 @@ public class MainController extends SpringBootServletInitializer{
 				);
 		return "file";
 	}
-	@RequestMapping("/notify")
-	public String notifi(){
-		return "notify";
+	@RequestMapping("/tiezi")
+	public String tiezi(Model model,HttpServletRequest request){
+		User u = LoginController.loginUser(request);
+		if(null == u){
+			return "redirect:/app/login";
+		}
+		
+		model.addAttribute("list",articleDao.list(M.make("type", 2).asMap()));
+		model.addAttribute("data", tieziDao.list(M.make("myId", u.getId()).asMap()));
+		
+		Random r = new Random();
+		model.addAttribute("r1", r.nextInt(5));
+		model.addAttribute("r2", r.nextInt(5));
+		return "tiezi";
 	}
+	@RequestMapping("/register")
+	public String register(){
+		return "register";
+	}
+	
 }

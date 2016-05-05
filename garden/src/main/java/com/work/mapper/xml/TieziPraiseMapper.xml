@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.work.mapper.TieziPraiseDao">
+  <insert id="insert" parameterType="com.work.bean.TieziPraise">
+   insert into tb_tiezi_praise(tiezi_id,user_id) values(#{tiezi_id},#{user_id});
+  </insert>
+  <delete id="delete" parameterType="com.work.bean.TieziPraise">
+   delete from tb_tiezi_praise
+   <where>
+         <if test="tiezi_id!=null">and tiezi_id=#{ tiezi_id }</if>
+         <if test="user_id!=null">and user_id=#{ user_id }</if>
+       </where>
+  </delete>
+  <update id="update" parameterType="com.work.bean.TieziPraise">
+   update tb_tiezi_praise
+   <set>
+         <if test="tiezi_id!=null">tiezi_id=#{ tiezi_id },</if>
+         <if test="user_id!=null">user_id=#{ user_id },</if>
+       </set>
+   <where>
+    =#{}
+         <if test="tiezi_id!=null">and tiezi_id=#{ tiezi_id }</if>
+         <if test="user_id!=null">and user_id=#{ user_id }</if>
+       </where>
+  </update>
+  <select id="list" resultType="com.work.bean.TieziPraise" parameterType="com.work.bean.TieziPraise">
+   select tiezi_id,user_id from tb_tiezi_praise
+   <where>
+         <if test="tiezi_id!=null">and tiezi_id=#{ tiezi_id }</if>
+         <if test="user_id!=null">and user_id=#{ user_id }</if>
+       </where>
+  </select>
+  <select id="listByPage" resultType="com.work.bean.TieziPraise" parameterType="com.work.bean.TieziPraise">
+   select tiezi_id,user_id from tb_tiezi_praise
+   <where>
+         <if test="tiezi_id!=null">and tiezi_id=#{ tiezi_id }</if>
+         <if test="user_id!=null">and user_id=#{ user_id }</if>
+       </where>
+   limit #{offset},#{rows}
+  </select>
+  <select id="load" resultType="com.work.bean.TieziPraise" parameterType="com.work.bean.TieziPraise">
+   select tiezi_id,user_id from tb_tiezi_praise
+   <where>
+         <if test="tiezi_id!=null">and tiezi_id=#{ tiezi_id }</if>
+         <if test="user_id!=null">and user_id=#{ user_id }</if>
+       </where>
+   limit 0,1
+  </select>
+  <select id="count" resultType="int" parameterType="com.work.bean.TieziPraise">
+   select count(1) from tb_tiezi_praise
+   <where>
+         <if test="tiezi_id!=null">and tiezi_id = #{ tiezi_id }</if>
+         <if test="user_id!=null">and user_id = #{ user_id }</if>
+       </where>
+  </select>
+ </mapper>
+ 
