@@ -7,6 +7,16 @@ public class AjaxReturn {
 	private String msg;
 	
 	private Integer code;
+	
+	private Object data;
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
 
 	public String getMsg() {
 		return msg;
@@ -37,6 +47,13 @@ public class AjaxReturn {
 		this.msg = msg;
 	}
 	
+	public AjaxReturn(Boolean ok, String msg, Object data) {
+		super();
+		this.ok = ok;
+		this.msg = msg;
+		this.data = data;
+	}
+
 	public AjaxReturn(Boolean ok) {
 		
 		this.ok = ok;

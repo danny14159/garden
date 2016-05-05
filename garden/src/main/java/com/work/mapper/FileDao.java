@@ -1,5 +1,6 @@
 package com.work.mapper;
 import org.springframework.stereotype.Repository;
+
 import com.work.bean.File;
 /**
  * @author 
@@ -9,4 +10,5 @@ import com.work.bean.File;
 public interface FileDao extends BasicDao<File> {
 
 
+	public File latestFile();
 }

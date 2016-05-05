@@ -18,20 +18,15 @@
   <update id="update" parameterType="com.work.bean.File">
    update tb_file
    <set>
-         <if test="id!=null">id=#{ id },</if>
          <if test="name!=null">name=#{ name },</if>
          <if test="path!=null">path=#{ path },</if>
          <if test="create_time!=null">create_time=#{ create_time },</if>
          <if test="download_times!=null">download_times=#{ download_times },</if>
          <if test="file_type!=null">file_type=#{ file_type },</if>
+         <if test="descn!=null">descn=#{ descn },</if>
        </set>
    <where>
     id=#{id}
-         <if test="name!=null">and name=#{ name }</if>
-         <if test="path!=null">and path=#{ path }</if>
-         <if test="create_time!=null">and create_time=#{ create_time }</if>
-         <if test="download_times!=null">and download_times=#{ download_times }</if>
-         <if test="file_type!=null">and file_type=#{ file_type }</if>
        </where>
   </update>
   <select id="list" resultType="com.work.bean.File" parameterType="com.work.bean.File">
@@ -44,6 +39,7 @@
          <if test="download_times!=null">and download_times=#{ download_times }</if>
          <if test="file_type!=null">and file_type=#{ file_type }</if>
        </where>
+       order by id desc
   </select>
   <select id="listByPage" resultType="com.work.bean.File" parameterType="com.work.bean.File">
    select id,name,path,create_time,download_times,file_type,descn from tb_file
@@ -79,6 +75,9 @@
          <if test="download_times!=null">and download_times = #{ download_times }</if>
          <if test="file_type!=null">and file_type = #{ file_type }</if>
        </where>
+  </select>
+  <select id="latestFile" resultType="com.work.bean.File">
+  	select * from tb_file where id = (select max(id) from tb_file)
   </select>
  </mapper>
  

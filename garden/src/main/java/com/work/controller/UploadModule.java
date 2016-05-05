@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.work.mapper.FileDao;
 import com.work.util.AjaxReturn;
 import com.work.util.ImageUtil;
-import com.work.util.file.FileTypeJudge;
 
 @Controller
 @RequestMapping("/upd")
@@ -108,7 +107,7 @@ public class UploadModule {
 				e.printStackTrace();
 				return new AjaxReturn(false, "缩略图生成异常！");
 			}
-		return new AjaxReturn(true,returnPath+fileName);
+		return new AjaxReturn(true,returnPath+fileName,fileDao.latestFile());
 	}
 	
 	@RequestMapping(value="/ueditor/controller")

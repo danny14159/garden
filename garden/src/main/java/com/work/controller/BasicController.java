@@ -41,4 +41,11 @@ public abstract class BasicController<BeanType> {
 		
 		return new AjaxReturn(getDao().delete(M.make("id", id).asMap()) > 0);
 	}
+	
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	@ResponseBody
+	public Object update(BeanType obj){
+		
+		return new AjaxReturn(getDao().update(obj) > 0);
+	}
 }
