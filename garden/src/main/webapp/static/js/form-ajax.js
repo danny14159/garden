@@ -42,7 +42,7 @@ $(function(){
 			data = $form.serializeObject(),
 			forwardUrl = $form.attr('forward')
 			;
-			if(!$form.valid()) return false;
+			if($form.valid && !$form.valid()) return false;
 			$.ajax({
 				url:url,
 				data:data,

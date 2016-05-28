@@ -19,6 +19,19 @@ public class File  {
 	 * 访问路径
 	 */
 	private String path;
+	
+	/**
+	 * 文件二进制内容
+	 */
+	private byte[] content;
+
+	public byte[] getContent() {
+		return content;
+	}
+
+	public void setContent(byte[] content) {
+		this.content = content;
+	}
 
 	/**
 	 * 创建时间

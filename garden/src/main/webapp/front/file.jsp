@@ -33,7 +33,7 @@ td{border:none!important;}
 	<c:forEach items="${data }" var="i">
 		<c:set var="thumb" value="/static/file_suffix/${fn:toLowerCase(i.file_type) }.png"/>
 		<c:if test="${fn:toLowerCase(i.file_type) == 'jpeg' or fn:toLowerCase(i.file_type) == 'jpg' }">
-			<c:set var="thumb" value="${i.path }"/>
+			<c:set var="thumb" value="/upd/download/${i.id }"/>
 		</c:if>
 		<tr>
 			<td width="20%"><img src="${thumb }" width="100px"/></td>
@@ -42,8 +42,7 @@ td{border:none!important;}
 					<tr><td><a class="text-info" href="javascript:;">${i.name }</a>
 					
 					<div class="pull-right">
-					<a class="text-danger" href="${i.path }" download="${i.name }">下载</a>
-					<a class="text-muted" href="${i.path }" target="_blank">预览</a>
+					<a class="text-danger" href="/upd/download/${i.id }" download="${i.name }">下载</a>
 					</div>
 					
 					</td></tr>

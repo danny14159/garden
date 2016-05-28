@@ -19,17 +19,18 @@
          <if test="id!=null">id=#{ id },</if>
          <if test="username!=null">username=#{ username },</if>
          <if test="password!=null">password=#{ password },</if>
-         <if test="type!=null">type=#{ type },</if>
+         <if test="sex!=null">sex=#{ sex },</if>
+         <if test="nickname!=null">nickname=#{ nickname },</if>
+         <if test="email!=null">email=#{ email },</if>
+         <if test="birth!=null">birth=#{ birth },</if>
+         <if test="self_intro!=null">self_intro=#{ self_intro },</if>
        </set>
    <where>
     id=#{id}
-         <if test="username!=null">and username=#{ username }</if>
-         <if test="password!=null">and password=#{ password }</if>
-         <if test="type!=null">and type=#{ type }</if>
        </where>
   </update>
   <select id="list" resultType="com.work.bean.User" parameterType="com.work.bean.User">
-   select id,username,password,type from tb_user
+   select * from tb_user
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="username!=null">and username=#{ username }</if>
@@ -38,7 +39,7 @@
        </where>
   </select>
   <select id="listByPage" resultType="com.work.bean.User" parameterType="com.work.bean.User">
-   select id,username,password,type from tb_user
+   select * from tb_user
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="username!=null">and username=#{ username }</if>
@@ -48,7 +49,7 @@
    limit #{offset},#{rows}
   </select>
   <select id="load" resultType="com.work.bean.User" parameterType="com.work.bean.User">
-   select id,username,password,type from tb_user
+   select * from tb_user
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="username!=null">and username=#{ username }</if>

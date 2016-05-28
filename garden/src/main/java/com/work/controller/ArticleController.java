@@ -37,5 +37,11 @@ public class ArticleController extends BasicController<Article>{
 		obj.setUpdate_time(new Date());
 		return super.insert(obj);
 	}
+	
+	@Override
+	public Object update(Article obj) {
+		obj.setUpdate_time(new Date());
+		return super.update(obj);
+	}
 }
     

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 import com.work.bean.Article;
@@ -95,18 +96,25 @@ public class MainController extends SpringBootServletInitializer{
 		Article data = articleDao.load(M.make("id", id).asMap());
 		model.addAttribute("data", data);
 		
-		model.addAttribute("list",articleDao.list(M.make("type", 2).asMap()));
+		model.addAttribute("list",articleDao.listByPage(M.pageTransfer(1, 5).put("type", 2).asMap()));
 		return "artdetail";
 	}
 	@RequestMapping("/plants")
 	public String plants(Model model){
-		model.addAttribute("list",articleDao.list(M.make("type", 2).asMap()));
 		return "plants";
 	}
+	@RequestMapping("/plants/data")
+	@ResponseBody
+	public Object plantsData(Integer ps,Integer pn){
+		return articleDao.listByPage(M.pageTransfer(pn, ps).put("type", 2).asMap());
+	}
 	@RequestMapping("/file")
-	public String file(Model model){
-		model.addAttribute("data", fileDao.list(null)
-				);
+	public String file(Model model,HttpServletRequest request){
+		User u = LoginController.loginUser(request);
+		if(null == u){
+			return "redirect:/app/login";
+		}
+		model.addAttribute("data", fileDao.list(null));
 		return "file";
 	}
 	@RequestMapping("/tiezi")
@@ -116,7 +124,7 @@ public class MainController extends SpringBootServletInitializer{
 			return "redirect:/app/login";
 		}
 		
-		model.addAttribute("list",articleDao.list(M.make("type", 2).asMap()));
+		model.addAttribute("list",articleDao.listByPage(M.pageTransfer(1, 5).put("type", 2).asMap()));
 		
 		List<Tiezi> data = tieziDao.list(M.make("myId", u.getId()).asMap());
 		
@@ -141,5 +149,11 @@ public class MainController extends SpringBootServletInitializer{
 		model.addAttribute("data", articleDao.search(key));
 		model.addAttribute("key", key);
 		return "art";
+	}
+	
+	@RequestMapping("/profile")
+	public String profile(Model model){
+		model.addAttribute("list",articleDao.listByPage(M.pageTransfer(1, 5).put("type", 2).asMap()));
+		return "profile";
 	}
 }

@@ -1,4 +1,9 @@
 package com.work.bean;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * @author 
  *
@@ -26,6 +31,57 @@ public class User  {
 	 * 2：普通用户
 	 */
 	private String type;
+	
+	private String sex;
+	
+	private String nickname;
+	
+	private String email;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date birth;
+	
+	private String self_intro;
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getBirth() {
+		return birth;
+	}
+
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+
+	public String getSelf_intro() {
+		return self_intro;
+	}
+
+	public void setSelf_intro(String self_intro) {
+		this.self_intro = self_intro;
+	}
 
 	public void setId(Integer id){
 		this.id=id;

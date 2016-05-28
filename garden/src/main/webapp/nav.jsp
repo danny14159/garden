@@ -21,8 +21,8 @@ body{font-family: 'Microsoft Yahei'}
             <li<c:if test="${empty param.nav or param.nav == 0 }"> class="active"</c:if>><a href="/">首页</a></li>
             <li<c:if test="${param.nav == 1 }"> class="active"</c:if>><a href="/art">园艺</a></li>
             <li<c:if test="${param.nav == 2 }"> class="active"</c:if>><a href="/plants">植物</a></li>
-            <c:if test="${me != null }"><li<c:if test="${param.nav == 3 }"> class="active"</c:if>><a href="/tiezi">贴子</a></li>
-            <li<c:if test="${param.nav == 4 }"> class="active"</c:if>><a href="/file">文件</a></li></c:if>
+            <%-- <c:if test="${me != null }"> --%><li<c:if test="${param.nav == 3 }"> class="active"</c:if>><a href="/tiezi">贴子</a></li>
+            <li<c:if test="${param.nav == 4 }"> class="active"</c:if>><a href="/file">文件</a></li><%-- </c:if> --%>
             
           </ul>
           <form class="navbar-form navbar-right" action="/search">
@@ -31,7 +31,9 @@ body{font-family: 'Microsoft Yahei'}
             </div>
             <button type="submit" class="btn btn-success">搜索</button>
             <c:if test="${me != null }">
-            <span class="" style="color:#fff;">${me.username }</span><a class="btn btn-default" href="/app/login">退出</a>
+            <span class="" style="color:#fff;">
+            <a href="/profile">${me.username }</a>
+            </span><a class="btn btn-default" href="/app/login">退出</a>
             </c:if>
             <c:if test="${me == null }">
             	<a class="btn btn-default" href="/register">注册</a>

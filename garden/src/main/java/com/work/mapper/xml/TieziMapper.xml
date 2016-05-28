@@ -25,10 +25,6 @@
        </set>
    <where>
     id=#{id}
-         <if test="title!=null">and title=#{ title }</if>
-         <if test="content!=null">and content=#{ content }</if>
-         <if test="create_time!=null">and create_time=#{ create_time }</if>
-         <if test="create_by!=null">and create_by=#{ create_by }</if>
        </where>
   </update>
   <select id="list" resultType="com.work.bean.Tiezi" parameterType="map">
