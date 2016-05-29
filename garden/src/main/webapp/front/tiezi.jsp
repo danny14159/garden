@@ -28,7 +28,7 @@ hr{border: none;}
 	<div class="col-sm-8">
 		<div class="row">
 		<div class="col-sm-4">
-			<img src="/static/avatar/${me.id % 5 }.jpg" width="80%"/>
+			<img src="/upd/avatar/${me.id }" onerror="this.src='/static/avatar/${me.id % 5 }.jpg'" width="80%"/>
 		</div>
 		
 		<div class="col-sm-8">
@@ -51,7 +51,7 @@ hr{border: none;}
 			<c:forEach items="${data }" var="i" varStatus="s">
 			<li><div class="row">
 				<div class="col-sm-2" style="text-align: center;">
-					<img src="/static/avatar/${i.create_by % 5 }.jpg" width="100%" class="img-thumbnail"/>
+					<img  src="/upd/avatar/${i.create_by }" onerror="this.src='/static/avatar/${i.create_by % 5 }.jpg'" width="100%" class="img-thumbnail"/>
 					${i.create_username }
 				</div>
 				<div class="col-sm-10">
@@ -76,7 +76,7 @@ hr{border: none;}
 					<c:forEach items="${i.comments }" var="c">
 						<li class="row">
 						<div class="col-sm-1"  style="padding: 0;">
-							<img src="/static/avatar/${c.user_id % 5 }.jpg" width="50px" class="img-thumbnail"/>
+							<img src="/upd/avatar/${c.user_id }" onerror="this.src='/static/avatar/${c.user_id % 5 }.jpg'" width="50px" class="img-thumbnail"/>
 						</div>
 						<div class="col-sm-11" >
 							<small class="" style="color:#eb7350">${c.username }&nbsp;：</small>

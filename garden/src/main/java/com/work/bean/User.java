@@ -41,6 +41,16 @@ public class User  {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birth;
 	
+	private byte[] avatar;
+	
+	public byte[] getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
+	}
+
 	private String self_intro;
 
 	public String getSex() {

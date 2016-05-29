@@ -28,7 +28,13 @@ hr{border: none;}
 	<div class="col-sm-8">
 		<div class="row">
 		<div class="col-sm-4">
-			<img src="/static/avatar/${me.id % 5 }.jpg" width="80%"/>
+			<img src="/upd/avatar/${me.id }" onerror="this.src='/static/avatar/${me.id % 5 }.jpg'" width="80%"/>
+			<hr/>
+			<form action="/upd/avatar" method="post" enctype="multipart/form-data">
+				<input  type="file" value="上传头像" style="display: none;" name="img"/>
+				<button type="button" onclick="$(this).prev().click()" class="btn btn-primary">选择图片</button>
+				<button class="btn btn-primary">上传头像</button>
+			</form>
 		</div>
 		
 		<form form-ajax action="/user/update" forward="/profile" method="post">

@@ -16,7 +16,6 @@
   <update id="update" parameterType="com.work.bean.User">
    update tb_user
    <set>
-         <if test="id!=null">id=#{ id },</if>
          <if test="username!=null">username=#{ username },</if>
          <if test="password!=null">password=#{ password },</if>
          <if test="sex!=null">sex=#{ sex },</if>
@@ -24,6 +23,7 @@
          <if test="email!=null">email=#{ email },</if>
          <if test="birth!=null">birth=#{ birth },</if>
          <if test="self_intro!=null">self_intro=#{ self_intro },</if>
+         <if test="avatar!=null">avatar=#{ avatar },</if>
        </set>
    <where>
     id=#{id}

@@ -38,7 +38,6 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="/user/" target="main">用户管理</a></li>
-            <li><a href="/notify/" target="main">公告管理</a></li>
             <li><a href="/file/" target="main">文件管理</a></li>
             <li><a href="/article/?type=1" target="main">植物信息管理</a></li>
             <li><a href="/article/?type=2" target="main">园艺信息管理</a></li>
