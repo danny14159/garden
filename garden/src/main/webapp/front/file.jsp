@@ -64,7 +64,12 @@ td{border:none!important;}
 </div>
 <div class="col-sm-5">
 	<!-- <div class="upload_btn" onclick="">上传文件</div> -->
-	<div id="file_upload"></div>
+	<c:if test="${me!=null }">
+		<div id="file_upload"></div>
+	</c:if>
+	<c:if test="${me==null }">
+		<p>登录之后才可以上传文件哦~！</p>
+	</c:if>
 	<p class="text-danger">下载排行</p>
 	<c:forEach items="${data }" var="i">
 	<div class="col-sm-4 file-block">

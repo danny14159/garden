@@ -63,7 +63,7 @@ hr{border: none;}
 					<a href="javascript:;"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>收藏</a>&nbsp;&nbsp;
 					<a href="/tiezi/praise?tieziId=${i.id }"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 					<c:if test="${i.hasPraised > 0 }">取消赞</c:if>
-					<c:if test="${i.hasPraised eq 0 }">赞</c:if>
+					<c:if test="${i.hasPraised eq 0 or i.hasPraised == null}">赞</c:if>
 					(${i.nPraise })</a>&nbsp;&nbsp;
 					<a href="javascript:;" onclick="comment(this)"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>评论(${i.nComment })</a>
 				<div class="comment-area" style="display: none;">
@@ -128,6 +128,9 @@ function submit(){
 	},function(data){
 		if(data.ok){
 			location.reload();
+		}
+		else{
+			alert(data.msg)
 		}
 	})
 }

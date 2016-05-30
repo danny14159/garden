@@ -10,7 +10,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   /* background-color: #eee; */
-  background: url('/static/img/bg.jpg')  no-repeat;
+  background: url('/static/img/bgregister.jpg')  no-repeat;
   background-size:100%; 
 }
 

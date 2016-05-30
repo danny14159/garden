@@ -31,7 +31,9 @@
    select tb_tiezi.id,tb_tiezi.title,tb_tiezi.content,tb_tiezi.create_time,tb_tiezi.create_by,
    (select count(1) from tb_tiezi_praise where tiezi_id = tb_tiezi.id) as nPraise,
    (select count(1) from tb_tiezi_comment where tiezi_id = tb_tiezi.id) as nComment,
-   (select count(1) from tb_tiezi_praise where tiezi_id = tb_tiezi.id and user_id = #{myId}) as hasPraised,
+   <if test="myId!=null">
+   	(select count(1) from tb_tiezi_praise where tiezi_id = tb_tiezi.id and user_id = #{myId}) as hasPraised,
+   </if>
     u.username as create_username
     from tb_tiezi
     left join tb_user u on tb_tiezi.create_by = u.id

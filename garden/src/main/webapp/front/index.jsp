@@ -17,9 +17,10 @@
 <jsp:include page="/nav.jsp"></jsp:include>
 
  <div class="masthead">
-        <h3 class="text-muted">欢迎来到植物园</h3><hr/>
+       <!--  <h3 class="text-muted">欢迎来到植物园</h3> --><hr/>
 </div>
       
+      <center>
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -31,17 +32,17 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="/static/img/2.jpeg" alt="" width="100%">
+      <img src="/static/img/${month }/2.jpg" alt="" width="100%">
       <div class="carousel-caption">植物园一角
       </div>
     </div>
     <div class="item">
-      <img src="/static/img/1.jpeg" alt="" width="100%">
+      <img src="/static/img/${month }/1.jpg" alt="" width="100%">
       <div class="carousel-caption">植物园一角
       </div>
     </div>
     <div class="item">
-      <img src="/static/img/3.jpeg" alt="" width="100%">
+      <img src="/static/img/${month }/3.jpg" alt="" width="100%">
       <div class="carousel-caption">植物园一角
       </div>
     </div>
@@ -57,6 +58,8 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+</center>
 </div>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>

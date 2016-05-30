@@ -46,7 +46,7 @@ public class TieziController extends BasicController<Tiezi>{
 		
 		User u = LoginController.loginUser(request);
 		if(null == u){
-			return new AjaxReturn(false);
+			return new AjaxReturn(false,"请先登录");
 		}
 		obj.setCreate_by(u.getId());
 		obj.setCreate_time(new Date());

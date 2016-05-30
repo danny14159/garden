@@ -19,8 +19,8 @@ body{font-family: 'Microsoft Yahei'}
         <ul class="nav navbar-nav">
         	
             <li<c:if test="${empty param.nav or param.nav == 0 }"> class="active"</c:if>><a href="/">首页</a></li>
-            <li<c:if test="${param.nav == 1 }"> class="active"</c:if>><a href="/art">园艺</a></li>
             <li<c:if test="${param.nav == 2 }"> class="active"</c:if>><a href="/plants">植物</a></li>
+            <li<c:if test="${param.nav == 1 }"> class="active"</c:if>><a href="/art">园艺</a></li>
             <%-- <c:if test="${me != null }"> --%><li<c:if test="${param.nav == 3 }"> class="active"</c:if>><a href="/tiezi">贴子</a></li>
             <li<c:if test="${param.nav == 4 }"> class="active"</c:if>><a href="/file">文件</a></li><%-- </c:if> --%>
             

@@ -1,5 +1,7 @@
 package com.work;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -37,8 +39,12 @@ public class MainController extends SpringBootServletInitializer{
 		return application.sources(MainController.class);
 	}
 	@RequestMapping("/")
-	public String index(){
+	public String index(Model model){
+		Calendar ca = Calendar.getInstance();
+		ca.setTime(new Date());
+		int month = ca.get(Calendar.MONTH);
 		
+		model.addAttribute("month", month+1);
 		return "index";
 	}
 	
@@ -110,23 +116,23 @@ public class MainController extends SpringBootServletInitializer{
 	}
 	@RequestMapping("/file")
 	public String file(Model model,HttpServletRequest request){
-		User u = LoginController.loginUser(request);
+		/*User u = LoginController.loginUser(request);
 		if(null == u){
 			return "redirect:/app/login";
-		}
+		}*/
 		model.addAttribute("data", fileDao.list(null));
 		return "file";
 	}
 	@RequestMapping("/tiezi")
 	public String tiezi(Model model,HttpServletRequest request){
 		User u = LoginController.loginUser(request);
-		if(null == u){
+		/*if(null == u){
 			return "redirect:/app/login";
-		}
+		}*/
 		
 		model.addAttribute("list",articleDao.listByPage(M.pageTransfer(1, 5).put("type", 2).asMap()));
 		
-		List<Tiezi> data = tieziDao.list(M.make("myId", u.getId()).asMap());
+		List<Tiezi> data = tieziDao.list(M.make("myId",u==null?null: u.getId()).asMap());
 		
 		for(Tiezi item:data){
 			item.setComments(tieziCommentDao.list(M.make("tiezi_id", item.getId()).asMap()));
