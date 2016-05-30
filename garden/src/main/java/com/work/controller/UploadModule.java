@@ -154,8 +154,9 @@ public class UploadModule {
 		} else {
 			file_bean.setFile_type(filename_sep[0]);
 		}
-		return AjaxReturn.ok(fileDao.insert(file_bean), null, null);
-
+		AjaxReturn ret = AjaxReturn.ok(fileDao.insert(file_bean), null, null);
+		ret.setData(fileDao.latestFile());
+		return ret;
 		// return processUploading(img, "image", "cover", "", "/static/upload/",
 		// false, 0, 0,Filename);
 	}

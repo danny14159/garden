@@ -136,7 +136,7 @@ function finishUpload(id,name){
 		    	name:$('.layui-layer-content .upload_file_name').val(),
 		    	descn:$('.layui-layer-content .file_descn').val()
 		    },function(data){
-		    	if(data.ok){
+		    	if(data){
 		    		location.reload();
 				    layer.close(index); //如果设定了yes回调，需进行手工关闭
 		    	}
