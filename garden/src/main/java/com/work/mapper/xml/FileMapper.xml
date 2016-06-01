@@ -77,7 +77,7 @@
        </where>
   </select>
   <select id="latestFile" resultType="com.work.bean.File">
-  	select * from tb_file where id = (select max(id) from tb_file)
+  	select id,name from tb_file where id = (select max(id) from tb_file)
   </select>
  </mapper>
  
