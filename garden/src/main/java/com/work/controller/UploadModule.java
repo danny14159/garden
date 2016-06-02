@@ -155,7 +155,9 @@ public class UploadModule {
 			file_bean.setFile_type(filename_sep[0]);
 		}
 		AjaxReturn ret = AjaxReturn.ok(fileDao.insert(file_bean), null, null);
-		ret.setData(fileDao.latestFile());
+		com.work.bean.File file = fileDao.latestFile();
+		file.setPath("/upd/download/"+file.getId());
+		ret.setData(file);
 		return ret;
 		// return processUploading(img, "image", "cover", "", "/static/upload/",
 		// false, 0, 0,Filename);

@@ -5,7 +5,7 @@
    insert into tb_notify(id,title,content,author,create_time,update_time) values(#{id},#{title},#{content},#{author},#{create_time},#{update_time});
   </insert>
   <delete id="delete" parameterType="com.work.bean.Notify">
-   update tb_notify set delete_state=1
+   delete from tb_notify
    <where>
     id=#{id}
          <if test="title!=null">and title=#{ title }</if>

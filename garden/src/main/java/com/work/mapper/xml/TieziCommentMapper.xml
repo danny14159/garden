@@ -5,7 +5,7 @@
    insert into tb_tiezi_comment(id,tiezi_id,content,user_id,create_time) values(#{id},#{tiezi_id},#{content},#{user_id},#{create_time});
   </insert>
   <delete id="delete" parameterType="com.work.bean.TieziComment">
-   update tb_tiezi_comment set delete_state=1
+   delete from tb_tiezi_comment
    <where>
     id=#{id}
          <if test="tiezi_id!=null">and tiezi_id=#{ tiezi_id }</if>

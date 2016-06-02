@@ -5,7 +5,7 @@
    insert into tb_file(id,name,path,create_time,download_times,file_type,descn,content) values(#{id},#{name},#{path},#{create_time},#{download_times},#{file_type},#{descn},#{content});
   </insert>
   <delete id="delete" parameterType="com.work.bean.File">
-   update tb_file set delete_state=1
+   delete from tb_file
    <where>
     id=#{id}
          <if test="name!=null">and name=#{ name }</if>

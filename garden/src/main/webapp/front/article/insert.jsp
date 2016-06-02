@@ -134,7 +134,7 @@ $(function() {
         width         : 120,
         'onUploadSuccess' : function(file, data, response) {
         	data = JSON.parse(data);
-        	$('#cover').val(data.msg);
+        	$('#cover').val(data.data.path);
         	$('#preview').append($('<img>').attr('src',data.msg));
         }
     });

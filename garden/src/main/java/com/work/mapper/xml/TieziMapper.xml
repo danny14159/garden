@@ -5,7 +5,7 @@
    insert into tb_tiezi(id,title,content,create_time,create_by) values(#{id},#{title},#{content},#{create_time},#{create_by});
   </insert>
   <delete id="delete" parameterType="com.work.bean.Tiezi">
-   update tb_tiezi set delete_state=1
+   delete from tb_tiezi
    <where>
     id=#{id}
          <if test="title!=null">and title=#{ title }</if>
